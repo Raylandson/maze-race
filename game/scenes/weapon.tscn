@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbkfftain6jje"]
+
+[ext_resource type="Script" uid="uid://bkkeic6eg48cd" path="res://scripts/weapon.gd" id="1_xasec"]
+[ext_resource type="PackedScene" uid="uid://csq2rf73eqljp" path="res://scenes/aim_area_component.tscn" id="2_uxn4k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxn4k"]
+radius = 128.0
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_xasec")
+enabled = false
+
+[node name="AimAreaComponent" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_uxn4k")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+weapon = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AimAreaComponent"]
+shape = SubResource("CircleShape2D_uxn4k")
+
+[connection signal="body_entered" from="AimAreaComponent" to="AimAreaComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="AimAreaComponent" to="AimAreaComponent" method="_on_body_exited"]

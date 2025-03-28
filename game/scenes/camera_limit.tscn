@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctdejr8pqexha"]
+
+[ext_resource type="Script" uid="uid://df2467heupyfe" path="res://scripts/camera_limit.gd" id="1_chyl4"]
+
+[node name="CameraLimit" type="Area2D"]
+script = ExtResource("1_chyl4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
