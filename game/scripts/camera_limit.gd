@@ -21,7 +21,6 @@ static func new_camera(pos: Vector2i, shape_size: Vector2i) -> CameraLimit:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	#return
 	if body is Player:
 		if not is_instance_valid(shape):
 			return

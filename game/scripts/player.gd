@@ -1,7 +1,8 @@
 class_name Player extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
-var speed: float = 200
+var speed: float = 400
+
 
 #min sizex 36
 #min sizey 20
@@ -9,8 +10,6 @@ var speed: float = 200
 
 func _ready() -> void:
 	await get_tree().process_frame
-	#print(room_gen.get_rooms().size())
-	#print(room_gen.rooms)
 	
 	
 	#var zoom: float = 1/(room_gen.get_room_size_x() * room_gen.get_room_quantity())

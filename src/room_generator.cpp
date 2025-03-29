@@ -11,8 +11,10 @@ void RoomGenerator::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_room_size_x"), &RoomGenerator::get_room_size_x);
     ClassDB::bind_method(D_METHOD("set_room_size_y", "size"), &RoomGenerator::set_room_size_y);
     ClassDB::bind_method(D_METHOD("get_room_size_y"), &RoomGenerator::get_room_size_y);
-    ClassDB::bind_method(D_METHOD("set_room_quantity", "quantity"), &RoomGenerator::set_room_quantity);
-    ClassDB::bind_method(D_METHOD("get_room_quantity"), &RoomGenerator::get_room_quantity);
+    ClassDB::bind_method(D_METHOD("set_room_quantity_x", "quantity"), &RoomGenerator::set_room_quantity_x);
+    ClassDB::bind_method(D_METHOD("get_room_quantity_x"), &RoomGenerator::get_room_quantity_x);
+    ClassDB::bind_method(D_METHOD("set_room_quantity_y", "quantity"), &RoomGenerator::set_room_quantity_y);
+    ClassDB::bind_method(D_METHOD("get_room_quantity_y"), &RoomGenerator::get_room_quantity_y);
     ClassDB::bind_method(D_METHOD("get_rooms"), &RoomGenerator::get_rooms);
     ClassDB::bind_method(D_METHOD("set_remove_entire_wall", "new_value"), &RoomGenerator::set_remove_entire_wall);
     ClassDB::bind_method(D_METHOD("get_remove_entire_wall"), &RoomGenerator::get_remove_entire_wall);
@@ -21,7 +23,9 @@ void RoomGenerator::_bind_methods() {
     ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "tile_map"), "set_tile_map", "get_tile_map");
     ADD_PROPERTY(PropertyInfo(Variant::INT, "room_size_x"), "set_room_size_x", "get_room_size_x");
     ADD_PROPERTY(PropertyInfo(Variant::INT, "room_size_y"), "set_room_size_y", "get_room_size_y");
-    ADD_PROPERTY(PropertyInfo(Variant::INT, "room_quantity"), "set_room_quantity", "get_room_quantity");
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "room_quantity_x"), "set_room_quantity_x", "get_room_quantity_x");
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "room_quantity_y"), "set_room_quantity_y", "get_room_quantity_y");
+    
     ADD_PROPERTY(PropertyInfo(Variant::BOOL, "remove_entire_wall"), "set_remove_entire_wall", "get_remove_entire_wall");
 }
 
@@ -36,9 +40,9 @@ void RoomGenerator::_ready(){
 void RoomGenerator::generate_rooms(){
     //TileMapLayer *tile_map = Object::cast_to<TileMapLayer>(get_node<Node>(tile_map_path));
 
-    for (int a = 0; a < room_quantity; a++) {
+    for (int a = 0; a < room_quantity_x; a++) {
         Array row;
-        for (int b = 0; b < room_quantity; b++) {
+        for (int b = 0; b < room_quantity_y; b++) {
             Vector2i glob_pos = Vector2i(a * room_size_x * 16, b * room_size_y * 16);
             Vector2i tile_pos = Vector2i(a, b);
             create_one_room(glob_pos, tile_pos);
@@ -73,7 +77,7 @@ void RoomGenerator::create_maze(){
         for (int a = 0; a < directions.size(); a++){
             Vector2i neighbor = current_element + directions[a];
 
-            if(neighbor.x < 0 || neighbor.x >= room_quantity || neighbor.y < 0 || neighbor.y >= room_quantity){
+            if(neighbor.x < 0 || neighbor.x >= room_quantity_x || neighbor.y < 0 || neighbor.y >= room_quantity_y){
                 continue;
             }
 
@@ -108,6 +112,7 @@ void RoomGenerator::remove_wall(Vector2i pos, Vector2i dir){
     // remove a wall, can create only the door passage, or remove entire wall
     
     TileMapLayer *tile_map = Object::cast_to<TileMapLayer>(get_node<Node>(tile_map_path));
+
 
     //left
     if(dir == Vector2i(-1, 0)){
