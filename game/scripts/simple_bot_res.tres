@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SimpleBotResource" load_steps=2 format=3 uid="uid://cntm5ceo6wsdp"]
+
+[ext_resource type="Script" uid="uid://di2fobb0vlr5f" path="res://scripts/simple_robot_resource.gd" id="1_p1aje"]
+
+[resource]
+script = ExtResource("1_p1aje")
+speed = 0.0
+charge_time = 2.0
+metadata/_custom_type_script = "uid://di2fobb0vlr5f"

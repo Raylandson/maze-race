@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4uksjxpc2q6w"]
+
+[ext_resource type="Script" uid="uid://g1ea8v77wwd" path="res://scripts/clicker_manager.gd" id="1_8i78h"]
+[ext_resource type="Resource" uid="uid://cntm5ceo6wsdp" path="res://scripts/simple_bot_res.tres" id="2_tiree"]
+[ext_resource type="Theme" uid="uid://8dlq75wlfqgb" path="res://scenes/basic_theme.tres" id="3_4pv7e"]
+[ext_resource type="AudioStream" uid="uid://dijra53u2wbos" path="res://assets/sounds/zipclick.mp3" id="4_6e4k3"]
+
+[node name="ClickerManager" type="Node2D"]
+script = ExtResource("1_8i78h")
+simple_bot_res = ExtResource("2_tiree")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4pv7e")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "Upgrades:"
+
+[node name="SpeedCon" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SpeedButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/SpeedCon"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Speed +50"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/SpeedCon"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/SpeedCon/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cost: 5"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ChSpdButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Charge Speed - 10%"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+text = "Cost: 500"
+horizontal_alignment = 1
+
+[node name="NewRobotCon" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewRobotBu" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/NewRobotCon"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New robot"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/NewRobotCon"]
+layout_mode = 2
+
+[node name="RobotSLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/NewRobotCon/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cost: 5"
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_direction = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 85
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/MarginContainer"]
+layout_mode = 2
+
+[node name="CoinButton" type="Button" parent="CanvasLayer/Control2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "mine "
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_6e4k3")
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/SpeedCon/SpeedButton" to="." method="_on_speed_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer2/ChSpdButton" to="." method="_on_ch_spd_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/NewRobotCon/NewRobotBu" to="." method="_on_new_robot_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/MarginContainer/VBoxContainer/CoinButton" to="." method="_on_coin_button_pressed"]

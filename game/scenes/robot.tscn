@@ -1,23 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://civven5hg8eew"]
+[gd_scene load_steps=7 format=3 uid="uid://civven5hg8eew"]
 
 [ext_resource type="Script" uid="uid://2iny4kh56ql2" path="res://scripts/robot.gd" id="1_ykvnc"]
 [ext_resource type="Texture2D" uid="uid://c6lhoomxjpnra" path="res://assets/wall/beehives9.png" id="2_i42o3"]
+[ext_resource type="Resource" uid="uid://cntm5ceo6wsdp" path="res://scripts/simple_bot_res.tres" id="2_rcrfe"]
+[ext_resource type="Theme" uid="uid://8dlq75wlfqgb" path="res://scenes/basic_theme.tres" id="4_rcrfe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tipki"]
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykvnc"]
-size = Vector2(23, 40)
+size = Vector2(24, 31)
 
 [node name="Robot" type="CharacterBody2D"]
-collision_mask = 17
+collision_mask = 16
 script = ExtResource("1_ykvnc")
+resource = ExtResource("2_rcrfe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tipki")
 
 [node name="Bot" type="RayCast2D" parent="."]
-target_position = Vector2(0, 23)
+target_position = Vector2(0, 13)
 collision_mask = 16
 
 [node name="Right" type="RayCast2D" parent="."]
@@ -55,10 +58,6 @@ collision_mask = 16
 unique_name_in_owner = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.4
-drag_top_margin = 0.4
-drag_right_margin = 0.4
-drag_bottom_margin = 0.4
 
 [node name="CameraOffset" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -72,5 +71,15 @@ texture = ExtResource("2_i42o3")
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea"]
-position = Vector2(-11.5, 7)
+position = Vector2(-12, 2.5)
 shape = SubResource("RectangleShape2D_ykvnc")
+
+[node name="ChargingBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 17.0
+offset_bottom = -22.0
+theme = ExtResource("4_rcrfe")
+theme_override_font_sizes/font_size = 10

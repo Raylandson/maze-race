@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clusvcykg8ij7"]
+[gd_scene load_steps=18 format=3 uid="uid://clusvcykg8ij7"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://dfhk3dfoijbrl" path="res://assets/floor/cobble_blood1.png" id="2_jyhfs"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cks7y0l3m2m4i" path="res://assets/wall/brick_brown5.png" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://wf226b3cm00o" path="res://scripts/room_manager.gd" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://civven5hg8eew" path="res://scenes/robot.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://cl4smoh1fu0co" path="res://scripts/final_area.gd" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b4uksjxpc2q6w" path="res://scenes/clicker_manager.tscn" id="8_tipki"]
+[ext_resource type="Script" uid="uid://cvehcaoewuwcs" path="res://scripts/descharge_area.gd" id="9_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("1_o5qli")
@@ -178,6 +181,12 @@ sources/0 = SubResource("TileSetAtlasSource_tbgi4")
 sources/1 = SubResource("TileSetAtlasSource_tipki")
 sources/2 = SubResource("TileSetAtlasSource_85g3d")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_choun"]
+size = Vector2(60, 48)
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -188,10 +197,10 @@ tile_set = SubResource("TileSet_tefeu")
 
 [node name="RoomGenerator" type="RoomGenerator" parent="."]
 tile_map = NodePath("../TileMapLayer2")
-room_size_x = 5
-room_size_y = 5
-room_quantity_x = 16
-room_quantity_y = 9
+room_size_x = 4
+room_size_y = 4
+room_quantity_x = 8
+room_quantity_y = 4
 remove_entire_wall = true
 
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_gen")]
@@ -202,3 +211,23 @@ create_camera = false
 [node name="Robot" parent="." node_paths=PackedStringArray("room_gen") instance=ExtResource("6_tefeu")]
 position = Vector2(16, -24)
 room_gen = NodePath("../RoomGenerator")
+
+[node name="Final_area" type="Area2D" parent="."]
+position = Vector2(-296, -224)
+script = ExtResource("7_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Final_area"]
+position = Vector2(48, -40)
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="ClickerManager" parent="." instance=ExtResource("8_tipki")]
+
+[node name="DeschargeArea" type="Area2D" parent="."]
+position = Vector2(31, -27)
+script = ExtResource("9_85g3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeschargeArea"]
+shape = SubResource("RectangleShape2D_choun")
+
+[connection signal="body_entered" from="Final_area" to="Final_area" method="_on_body_entered"]
+[connection signal="body_entered" from="DeschargeArea" to="DeschargeArea" method="_on_body_entered"]

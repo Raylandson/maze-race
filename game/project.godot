@@ -15,6 +15,14 @@ run/main_scene="uid://clusvcykg8ij7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameEvents="*res://scripts/game_events.gd"
+
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=576
@@ -22,6 +30,11 @@ window/size/viewport_height=324
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
+
+[gui]
+
+theme/custom="uid://8dlq75wlfqgb"
 
 [input]
 

@@ -6,9 +6,21 @@ extends Node2D
 @export var max_enemy_qnt: int = 5
 @export var create_enemies: bool = true
 @export var create_camera: bool = true
+
+@export var create_final_area_bool: bool = true
 func _ready() -> void:
 	await get_tree().process_frame
 	create_cameras()
+	create_final_area()
+
+func create_final_area() -> void:
+	var roms: Array = room_gen.get_rooms()
+	
+	var last_room: Room = roms[room_gen.get_room_quantity_x() -1][room_gen.get_room_quantity_y() - 1]
+	
+	
+	$"../Final_area".global_position = last_room.get_glob_pos()
+
 
 
 func create_cameras() -> void:

@@ -38,7 +38,6 @@ void RoomGenerator::_ready(){
 }
 
 void RoomGenerator::generate_rooms(){
-    //TileMapLayer *tile_map = Object::cast_to<TileMapLayer>(get_node<Node>(tile_map_path));
 
     for (int a = 0; a < room_quantity_x; a++) {
         Array row;
