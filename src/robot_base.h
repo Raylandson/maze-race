@@ -1,39 +1,38 @@
 #pragma once
 
-#include <room_generator.h>
 #include <room.h>
+#include <room_generator.h>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
 
 using namespace godot;
 
-class RobotFill : public CharacterBody2D {
-	GDCLASS(RobotFill, CharacterBody2D);
+class RobotBase : public CharacterBody2D {
+	GDCLASS(RobotBase, CharacterBody2D);
 
 	//export vars
+protected:
 	NodePath room_gen_path;
 	float speed = 600.0;
 	float reach_offset = 5.0;
 	int x = 0;
 	int y = 0;
 
-private:
 	//ready vars
-	RoomGenerator* room_gen = nullptr;
+	RoomGenerator *room_gen = nullptr;
 	Array robot_rooms;
+
 	Array rooms_weight;
-	
 	std::vector<std::vector<int>> weights;
 
 	Vector2 target_pos;
 	Vector2 offset_vector = Vector2(0, 0);
 	//bool calculated_ready = false;
-	void calculate_new_pos();
-	void update_weights(Ref<Room> room);
-	Vector2i min_weighted_dir(Ref<Room> room);
-	void initialize_weight_array();
+	virtual void calculate_new_pos();
+	virtual void update_weights(Ref<Room> room);
+	virtual Vector2i min_weighted_dir(Ref<Room> room);
+	virtual void initialize_weight_array();
 
-protected:
 	static void _bind_methods();
 
 public:
@@ -52,9 +51,8 @@ public:
 	int get_y() const { return y; }
 	void set_y(int new_value) { y = new_value; }
 
-
 	void set_room_gen(const NodePath &room_path) { room_gen_path = room_path; }
 	NodePath get_room_gen() const { return room_gen_path; }
 
-	RobotFill();
+	RobotBase();
 };

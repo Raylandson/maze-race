@@ -24,10 +24,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("confirm"):
 		spawn_bots()
+		time_to_spawn = 0.02
 		#type = BotType.CPP if type == BotType.GDSCRIPT else BotType.GDSCRIPT
 	
 	if event.is_action_pressed("zoom_out"):
 		type = BotType.CPP if type == BotType.GDSCRIPT else BotType.GDSCRIPT
+		time_to_spawn = 0
 		delete_bots()
 
 func delete_bots() -> void:

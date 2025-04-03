@@ -8,6 +8,8 @@
 #include <room_generator.h>
 #include <my_player.h>
 #include <robot_fill.h>
+#include <robot_tremaux.h>
+#include <robot_base.h>
 
 using namespace godot;
 
@@ -19,7 +21,9 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	GDREGISTER_RUNTIME_CLASS(Room);
 	GDREGISTER_RUNTIME_CLASS(RoomGenerator);
 	GDREGISTER_RUNTIME_CLASS(MyPlayer);
+	GDREGISTER_RUNTIME_CLASS(RobotBase);
 	GDREGISTER_RUNTIME_CLASS(RobotFill);
+	GDREGISTER_RUNTIME_CLASS(RobotTremaux);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {
