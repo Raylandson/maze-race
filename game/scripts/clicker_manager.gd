@@ -11,7 +11,7 @@ var coins: int = 0:
 
 var label_coin: float = float(coins)
 @onready var coin_count_label:Label = $CanvasLayer/Control2/MarginContainer/VBoxContainer/Label
-@export var click_gains: int = 1
+@export var click_gains: int = 1000000000
 
 @export var speed_up_cost: int = 5:
 	set(value):
@@ -74,8 +74,9 @@ func _on_new_robot_pressed() -> void:
 	buy_robot_cost += 200
 	#for a in range(10):
 		#await get_tree().create_timer(0.2).timeout
-	var robot_pos: Vector2 = Vector2(16, -24)
-	get_tree().current_scene.add_child(Robot.new_simple_bot(robot_pos))
-	
+	for a in range(150):
+		var robot_pos: Vector2 = Vector2(16, -24)
+		get_tree().current_scene.add_child(Robot.new_simple_bot(robot_pos))
+		await get_tree().create_timer(0.2).timeout
 	if Robot.quantity >= 150:
 		%NewRobotCon.hide()

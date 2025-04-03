@@ -10,6 +10,14 @@ void Room::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_tile_pos"), &Room::get_tile_pos);
     ClassDB::bind_method(D_METHOD("set_visited", "new_value"), &Room::set_visited);
     ClassDB::bind_method(D_METHOD("get_visited"), &Room::get_visited);
+    ClassDB::bind_method(D_METHOD("get_directions"), &Room::get_directions);
+    ClassDB::bind_method(D_METHOD("set_directions", "new_dirs"), &Room::set_directions);
+
+    ClassDB::bind_method(D_METHOD("get_all_directions"), &Room::get_all_directions);
+    ClassDB::bind_method(D_METHOD("set_all_directions", "new_dirs"), &Room::set_all_directions);
+    ClassDB::bind_method(D_METHOD("get_robot_visited"), &Room::get_robot_visited);
+    ClassDB::bind_method(D_METHOD("set_robot_visited", "new_value"), &Room::set_robot_visited);
+
 }
 
 Room::Room() {

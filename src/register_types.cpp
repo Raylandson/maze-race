@@ -7,6 +7,7 @@
 #include <room.h>
 #include <room_generator.h>
 #include <my_player.h>
+#include <robot_fill.h>
 
 using namespace godot;
 
@@ -15,9 +16,10 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	GDREGISTER_CLASS(Room);
+	GDREGISTER_RUNTIME_CLASS(Room);
 	GDREGISTER_RUNTIME_CLASS(RoomGenerator);
 	GDREGISTER_RUNTIME_CLASS(MyPlayer);
+	GDREGISTER_RUNTIME_CLASS(RobotFill);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

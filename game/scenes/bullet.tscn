@@ -20,7 +20,7 @@ shape = SubResource("CapsuleShape2D_l5glv")
 
 [node name="Bullet" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
-scale = Vector2(2, 2)
+scale = Vector2(2.11, 2.11)
 texture = ExtResource("2_y25gk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

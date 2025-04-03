@@ -1,14 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://clusvcykg8ij7"]
+[gd_scene load_steps=20 format=3 uid="uid://clusvcykg8ij7"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://dfhk3dfoijbrl" path="res://assets/floor/cobble_blood1.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dgjmlxjqxha2f" path="res://assets/floor/cobble_blood2.png" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cks7y0l3m2m4i" path="res://assets/wall/brick_brown5.png" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://wf226b3cm00o" path="res://scripts/room_manager.gd" id="4_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://civven5hg8eew" path="res://scenes/robot.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cl4smoh1fu0co" path="res://scripts/final_area.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b4uksjxpc2q6w" path="res://scenes/clicker_manager.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://cvehcaoewuwcs" path="res://scripts/descharge_area.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cx0l7tt44ltp0" path="res://scripts/race_camera.gd" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://dgsrcaamqlsfc" path="res://scripts/fps_count.gd" id="13_a8y0u"]
+[ext_resource type="Script" uid="uid://b1vedp6xit418" path="res://scripts/robot_generator.gd" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("1_o5qli")
@@ -199,18 +201,14 @@ tile_set = SubResource("TileSet_tefeu")
 tile_map = NodePath("../TileMapLayer2")
 room_size_x = 4
 room_size_y = 4
-room_quantity_x = 8
-room_quantity_y = 4
+room_quantity_x = 36
+room_quantity_y = 20
 remove_entire_wall = true
 
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_gen")]
 script = ExtResource("4_tbgi4")
 room_gen = NodePath("../RoomGenerator")
 create_camera = false
-
-[node name="Robot" parent="." node_paths=PackedStringArray("room_gen") instance=ExtResource("6_tefeu")]
-position = Vector2(16, -24)
-room_gen = NodePath("../RoomGenerator")
 
 [node name="Final_area" type="Area2D" parent="."]
 position = Vector2(-296, -224)
@@ -228,6 +226,65 @@ script = ExtResource("9_85g3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeschargeArea"]
 shape = SubResource("RectangleShape2D_choun")
+
+[node name="RobotGenerator" type="Node2D" parent="." node_paths=PackedStringArray("room_gen")]
+script = ExtResource("13_trceg")
+room_gen = NodePath("../RoomGenerator")
+bot_quantity = 500
+time_to_spawn = 0.02
+robot_speed = 1000.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FpsCount" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("13_a8y0u")
+
+[node name="Label" type="Label" parent="CanvasLayer/FpsCount"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS:  "
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Robos: "
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_top = 1.0
+offset_right = -42.305
+offset_bottom = 25.19
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 23.0
+text = "Gdscript"
+
+[node name="RaceCamera" type="Camera2D" parent="." node_paths=PackedStringArray("room_gen")]
+script = ExtResource("12_eb6dy")
+room_gen = NodePath("../RoomGenerator")
 
 [connection signal="body_entered" from="Final_area" to="Final_area" method="_on_body_entered"]
 [connection signal="body_entered" from="DeschargeArea" to="DeschargeArea" method="_on_body_entered"]

@@ -4,6 +4,7 @@
 void RoomGenerator::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_player", "path"), &RoomGenerator::set_player);
     ClassDB::bind_method(D_METHOD("get_player"), &RoomGenerator::get_player);
+    
     ClassDB::bind_method(D_METHOD("set_tile_map", "path"), &RoomGenerator::set_tile_map);
     ClassDB::bind_method(D_METHOD("get_tile_map"), &RoomGenerator::get_tile_map);
 
@@ -82,11 +83,15 @@ void RoomGenerator::create_maze(){
 
             Array fist_row_2 = rooms[neighbor.x];
             Ref<Room> neighbor_room = fist_row_2[neighbor.y];
+            Ref<Room> current_room = stack[stack.size() - 1];
+            current_room->all_directions.append(neighbor);
 
             if (!neighbor_room->get_visited()){
-                Ref<Room> current_room = stack[stack.size() - 1];
                 remove_wall(current_room->get_glob_pos(), directions[a]);
                 neighbor_room->set_visited(true);
+                neighbor_room->directions.append(current_element);
+                current_room->directions.append(neighbor);
+                
                 current_element = neighbor;
                 stack.append(neighbor_room);
                 found_unvisited = true;

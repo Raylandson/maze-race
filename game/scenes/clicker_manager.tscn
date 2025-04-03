@@ -10,6 +10,7 @@ script = ExtResource("1_8i78h")
 simple_bot_res = ExtResource("2_tiree")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
