@@ -14,6 +14,7 @@ func _ready() -> void:
 	create_final_area()
 
 func create_final_area() -> void:
+	#return
 	var roms: Array = room_gen.get_rooms()
 	
 	var last_room: Room = roms[room_gen.get_room_quantity_x() -1][room_gen.get_room_quantity_y() - 1]
@@ -24,7 +25,7 @@ func create_final_area() -> void:
 
 
 func create_cameras() -> void:
-	
+	return
 	for row in room_gen.get_rooms():
 		for room: Room in row:
 			if not create_camera:

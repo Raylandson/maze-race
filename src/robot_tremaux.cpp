@@ -1,5 +1,4 @@
 #include "robot_tremaux.h"
-//#include <godot_cpp/classes/global_constants.hpp>
 
 void RobotTremaux::_bind_methods() {
 }
@@ -8,35 +7,10 @@ RobotTremaux::RobotTremaux() {
 }
 
 void RobotTremaux::_ready() {
-	//initialize_weight_array();
-	if (room_gen_path.is_empty()) {
-		UtilityFunctions::print("Erro: room_gen_path esto vazio!");
-		return;
-	}
-	Node *node = get_node_or_null(room_gen_path);
-	if (!node) {
-		UtilityFunctions::print("Erro: Nenhum no encontrado em ", room_gen_path);
-		return;
-	}
-	room_gen = Object::cast_to<RoomGenerator>(node);
-	if (!room_gen) {
-		UtilityFunctions::print("Erro: Node em ", room_gen_path, " nao eh um RoomGenerator!");
-		return;
-	}
-
-	int offset = room_gen->get_room_size_x() * 8;
-
-	offset_vector = Vector2(8, 8) + Vector2(offset, -offset);
-
-	robot_rooms = room_gen->get_rooms().duplicate();
-
-	Array row_pos = robot_rooms[x];
-	Ref<Room> first_room = row_pos[y];
-	Vector2 start_pos = Vector2(first_room->get_glob_pos()) + offset_vector;
-
-	set_global_position(start_pos);
-	initialize_weight_array();
-	calculate_new_pos();
+	RobotBase::_ready();
+    if (sprite) {
+        sprite->get_texture()->get_image()->fill(Color(1, 1, 0, 1));  // yellow
+    }
 }
 
 void RobotTremaux::_process(double p_delta) {
@@ -84,7 +58,6 @@ void RobotTremaux::initialize_weight_array() {
 void RobotTremaux::update_weights(Ref<Room> room) {
 	Vector2i pos = room->get_tile_pos();
 	int current_weight = weights[pos.x][pos.y];
-	UtilityFunctions::print("weight before in (", pos.x, ",", pos.y, "): ", current_weight);
 
 	Array dirs = room->get_directions();
 	int dir_size = dirs.size();
@@ -116,7 +89,6 @@ void RobotTremaux::update_weights(Ref<Room> room) {
 		}
 	}
 
-	UtilityFunctions::print("weight after in (", pos.x, ",", pos.y, "): ", weights[pos.x][pos.y]);
 }
 
 Vector2i RobotTremaux::min_weighted_dir(Ref<Room> room) {

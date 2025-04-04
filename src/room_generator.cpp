@@ -62,7 +62,7 @@ void RoomGenerator::generate_rooms(){
 
 void RoomGenerator::create_maze(){
     Array stack;
-    Vector2i current_element = Vector2i(0, 0);
+    Vector2i current_element = Vector2i(rand() % room_quantity_x, rand() % room_quantity_y);
     Array fist_row = rooms[current_element.x];
     Ref<Room> first_room =fist_row[current_element.y];
     first_room->set_visited(true);
@@ -122,34 +122,34 @@ void RoomGenerator::remove_wall(Vector2i pos, Vector2i dir){
     if(dir == Vector2i(-1, 0)){
         if(remove_entire_wall)
         for(int i = 1; i < room_size_y; i++){
-            tile_map->set_cell(pos/16 + Vector2i(0, -i), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(0, -i), 5, Vector2i(12, 6));
         } else{
-            tile_map->set_cell(pos/16 + Vector2i(0, -room_size_y/2), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(0, -room_size_y/2), 5, Vector2i(12, 6));
         }
 
     } else if (dir == Vector2i(1, 0)){
         //right
         if(remove_entire_wall)
         for(int i = 1; i < room_size_y; i++){
-            tile_map->set_cell(pos/16 + Vector2i(room_size_x, -i), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(room_size_x, -i), 5, Vector2i(12, 6));
         } else{
-            tile_map->set_cell(pos/16 + Vector2i(room_size_x, -room_size_y/2), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(room_size_x, -room_size_y/2), 5, Vector2i(12, 6));
         }
     } else if (dir == Vector2i(0, 1)){
         //down
         if(remove_entire_wall)
         for(int i = 1; i < room_size_x; i++){
-            tile_map->set_cell(pos/16 + Vector2i(i, 0), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(i, 0), 5, Vector2i(12, 6));
         } else{
-            tile_map->set_cell(pos/16 + Vector2i(room_size_x/2, 0), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(room_size_x/2, 0), 5, Vector2i(12, 6));
         }
     }  else if (dir == Vector2i(0, -1)){
         //up
         if(remove_entire_wall)
         for(int i = 1; i < room_size_x; i++){
-            tile_map->set_cell(pos/16 + Vector2i(i, -room_size_y), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(i, -room_size_y), 5, Vector2i(12, 6));
         } else{
-            tile_map->set_cell(pos/16 + Vector2i(room_size_x/2, -room_size_y), -1, Vector2i(1, 1));
+            tile_map->set_cell(pos/16 + Vector2i(room_size_x/2, -room_size_y), 5, Vector2i(12, 6));
         }
     }
 }
@@ -161,13 +161,19 @@ void RoomGenerator::create_one_room(Vector2i glob_pos, Vector2i tile_pos){
     
     // Draw walls
     for (int x = 0; x <= room_size_x; x++) {
-        tile_map->set_cell(glob_pos / 16 + Vector2i(x, 0), 0, Vector2i(1, 1));
-        tile_map->set_cell(glob_pos / 16 + Vector2i(x, -room_size_y), 0, Vector2i(1, 1));
+        tile_map->set_cell(glob_pos / 16 + Vector2i(x, 0), 5, Vector2i(14 + (rand() % 3), 11));
+        tile_map->set_cell(glob_pos / 16 + Vector2i(x, -room_size_y), 5, Vector2i(14 + (rand() % 3), 11));
     }
     
     for (int y = -room_size_y + 1; y <= 0; y++) {
-        tile_map->set_cell(glob_pos / 16 + Vector2i(0, y), 0, Vector2i(1, 1));
-        tile_map->set_cell(glob_pos / 16 + Vector2i(room_size_x, y), 0, Vector2i(1, 1));
+        tile_map->set_cell(glob_pos / 16 + Vector2i(0, y), 5, Vector2i(14 + (rand() % 3), 11));
+        tile_map->set_cell(glob_pos / 16 + Vector2i(room_size_x, y), 5, Vector2i(14 + (rand() % 3), 11));
+    }
+
+    for(int x = 1; x < room_size_x; x++){
+        for(int y = -room_size_y + 1; y < 0; y++){
+            tile_map->set_cell(glob_pos / 16 + Vector2i(x, y), 5, Vector2i(12, 6));
+        }
     }
     
     

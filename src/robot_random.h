@@ -6,8 +6,8 @@
 
 using namespace godot;
 
-class RobotTremaux : public RobotBase {
-	GDCLASS(RobotTremaux, RobotBase);
+class RobotRandom : public RobotBase {
+	GDCLASS(RobotRandom, RobotBase);
 	
 	protected:
     static void _bind_methods();
@@ -16,10 +16,9 @@ class RobotTremaux : public RobotBase {
    	virtual void _ready() override;
     virtual void _process(double p_delta) override;
     void calculate_new_pos() override;
-    void update_weights(Ref<Room> room) override;
-    void initialize_weight_array() override;
-	Vector2i min_weighted_dir(Ref<Room> room) override;
+	Vector2i pick_random_dir(Ref<Room> room);
+	Vector2i previous_dir = Vector2i(-1, -1);
 
-	RobotTremaux();
+	RobotRandom();
 };
 	

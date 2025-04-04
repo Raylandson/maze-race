@@ -1,16 +1,354 @@
-[gd_scene load_steps=20 format=3 uid="uid://clusvcykg8ij7"]
+[gd_scene load_steps=25 format=3 uid="uid://clusvcykg8ij7"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://dfhk3dfoijbrl" path="res://assets/floor/cobble_blood1.png" id="2_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://dgjmlxjqxha2f" path="res://assets/floor/cobble_blood2.png" id="3_tefeu"]
-[ext_resource type="Texture2D" uid="uid://cks7y0l3m2m4i" path="res://assets/wall/brick_brown5.png" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://wips4ihld4t3" path="res://scripts/robot_line.gd" id="2_choun"]
 [ext_resource type="Script" uid="uid://wf226b3cm00o" path="res://scripts/room_manager.gd" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://rp6vsrce43wm" path="res://assets/Room_Builder_free_16x16.png" id="5_trceg"]
 [ext_resource type="Script" uid="uid://cl4smoh1fu0co" path="res://scripts/final_area.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b4uksjxpc2q6w" path="res://scenes/clicker_manager.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://cvehcaoewuwcs" path="res://scripts/descharge_area.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cx0l7tt44ltp0" path="res://scripts/race_camera.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://dgsrcaamqlsfc" path="res://scripts/fps_count.gd" id="13_a8y0u"]
 [ext_resource type="Script" uid="uid://b1vedp6xit418" path="res://scripts/robot_generator.gd" id="13_trceg"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_choun"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8y0u"]
+texture = ExtResource("5_trceg")
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+12:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+13:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+11:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+14:5/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:5/0 = 0
+15:5/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:5/0 = 0
+16:5/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+14:6/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:6/0 = 0
+15:6/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:6/0 = 0
+16:6/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+14:7/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:7/0 = 0
+15:7/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:7/0 = 0
+16:7/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+14:8/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:8/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:8/0 = 0
+15:8/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:8/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:8/0 = 0
+16:8/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:8/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+14:9/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:9/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:9/0 = 0
+15:9/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:9/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:9/0 = 0
+16:9/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:9/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+14:10/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:10/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:10/0 = 0
+15:10/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:10/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:10/0 = 0
+16:10/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:10/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+14:11/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:11/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:11/0 = 0
+15:11/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:11/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:11/0 = 0
+16:11/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:11/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+14:12/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+14:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+15:12/0 = 0
+15:12/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+15:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+16:12/0 = 0
+16:12/0/modulate = Color(0.593134, 0.593134, 0.593134, 1)
+16:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_choun")
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+0:16/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+9:16/0 = 0
+0:17/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+9:17/0 = 0
+0:18/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+7:18/0 = 0
+8:18/0 = 0
+9:18/0 = 0
+0:19/0 = 0
+1:19/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+6:19/0 = 0
+7:19/0 = 0
+8:19/0 = 0
+9:19/0 = 0
+0:20/0 = 0
+1:20/0 = 0
+2:20/0 = 0
+3:20/0 = 0
+7:20/0 = 0
+8:20/0 = 0
+9:20/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tefeu"]
+uv_clipping = true
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 16
+sources/5 = SubResource("TileSetAtlasSource_a8y0u")
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+offsets = PackedFloat32Array(0.831461, 1)
+colors = PackedColorArray(1, 1, 0.0784314, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ya4ey"]
+offsets = PackedFloat32Array(0.867977, 1)
+colors = PackedColorArray(0.858824, 0.223529, 0.85098, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_a8y0u"]
+offsets = PackedFloat32Array(0.910112, 1)
+colors = PackedColorArray(0.054902, 0.619608, 0.486275, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_eb6dy"]
+offsets = PackedFloat32Array(0, 0.711111)
+colors = PackedColorArray(0.980556, 0.980556, 0.980556, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_trceg"]
+gradient = SubResource("Gradient_eb6dy")
+width = 150
+height = 150
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_trceg"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a8y0u"]
+gradient = SubResource("Gradient_trceg")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.901709, 0.166667)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("1_o5qli")
@@ -147,42 +485,6 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
-texture = ExtResource("2_jyhfs")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]
-texture = ExtResource("3_tefeu")
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85g3d"]
-texture = ExtResource("4_o6xl0")
-0:0/0 = 0
-0:0/0/z_index = -1
-1:0/0 = 0
-1:0/0/z_index = -1
-0:1/0 = 0
-0:1/0/z_index = -1
-1:1/0 = 0
-1:1/0/z_index = -1
-
-[sub_resource type="TileSet" id="TileSet_tefeu"]
-physics_layer_0/collision_layer = 16
-physics_layer_0/collision_mask = 16
-sources/0 = SubResource("TileSetAtlasSource_tbgi4")
-sources/1 = SubResource("TileSetAtlasSource_tipki")
-sources/2 = SubResource("TileSetAtlasSource_85g3d")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
 size = Vector2(48, 48)
 
@@ -195,15 +497,82 @@ size = Vector2(60, 48)
 tile_map = NodePath("../TileMapLayer2")
 room_size_x = 4
 room_size_y = 4
-room_quantity_x = 54
-room_quantity_y = 30
+room_quantity_x = 45
+room_quantity_y = 25
 remove_entire_wall = true
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_jyhfs")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_tefeu")
+
+[node name="RobotFillLine" type="Line2D" parent="." node_paths=PackedStringArray("robot")]
+default_color = Color(0.871542, 0.933428, 0, 1)
+gradient = SubResource("Gradient_choun")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 3.66
+antialiased = true
+script = ExtResource("2_choun")
+robot = NodePath("../RobotFill")
+
+[node name="RobotTremauxLine" type="Line2D" parent="." node_paths=PackedStringArray("robot")]
+width = 8.0
+default_color = Color(0.859211, 0.223844, 0.850981, 1)
+gradient = SubResource("Gradient_ya4ey")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_choun")
+robot = NodePath("../RobotTremaux")
+
+[node name="RobotRandomLine" type="Line2D" parent="." node_paths=PackedStringArray("robot")]
+width = 6.0
+default_color = Color(0.0542679, 0.619459, 0.48736, 1)
+gradient = SubResource("Gradient_a8y0u")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_choun")
+robot = NodePath("../RobotRandom")
+
+[node name="RaceCamera" type="Camera2D" parent="." node_paths=PackedStringArray("room_gen")]
+script = ExtResource("12_eb6dy")
+room_gen = NodePath("../RoomGenerator")
+
+[node name="RobotFill" type="RobotFill" parent="." groups=["robot"]]
+room_gen_path = NodePath("../RoomGenerator")
+reach_offset = 10.0
+speed = 1000.0
+
+[node name="PointLight2D" type="PointLight2D" parent="RobotFill"]
+color = Color(0.839215, 0.785152, 0, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_trceg")
+
+[node name="RobotTremaux" type="RobotTremaux" parent="." groups=["robot"]]
+room_gen_path = NodePath("../RoomGenerator")
+reach_offset = 10.0
+speed = 1000.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="RobotTremaux"]
+color = Color(0.601004, 0.0431054, 0.702979, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_trceg")
+
+[node name="RobotRandom" type="RobotRandom" parent="." groups=["robot"]]
+room_gen_path = NodePath("../RoomGenerator")
+reach_offset = 10.0
+speed = 2000.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="RobotRandom"]
+color = Color(5.29438e-07, 0.64072, 0.535358, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_a8y0u")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_jyhfs")
 
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_gen")]
 script = ExtResource("4_tbgi4")
@@ -227,14 +596,14 @@ script = ExtResource("9_85g3d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeschargeArea"]
 shape = SubResource("RectangleShape2D_choun")
 
-[node name="RobotGenerator" type="Node2D" parent="." node_paths=PackedStringArray("room_gen")]
+[node name="RobotGenerator" type="Node2D" parent="."]
 script = ExtResource("13_trceg")
-room_gen = NodePath("../RoomGenerator")
 bot_quantity = 1000
 time_to_spawn = 0.02
 robot_speed = 1000.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="FpsCount" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -282,9 +651,9 @@ offset_right = 65.0
 offset_bottom = 23.0
 text = "Gdscript"
 
-[node name="RaceCamera" type="Camera2D" parent="." node_paths=PackedStringArray("room_gen")]
-script = ExtResource("12_eb6dy")
-room_gen = NodePath("../RoomGenerator")
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.15
+blend_mode = 1
 
 [connection signal="body_entered" from="Final_area" to="Final_area" method="_on_body_entered"]
 [connection signal="body_entered" from="DeschargeArea" to="DeschargeArea" method="_on_body_entered"]

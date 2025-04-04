@@ -22,6 +22,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	return
 	if event.is_action_pressed("confirm"):
 		spawn_bots()
 		time_to_spawn = 0.02

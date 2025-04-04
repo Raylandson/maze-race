@@ -2,69 +2,18 @@
 //#include <godot_cpp/classes/global_constants.hpp>
 
 void RobotFill::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("set_speed", "new_value"), &RobotFill::set_speed);
-	ClassDB::bind_method(D_METHOD("get_speed"), &RobotFill::get_speed);
-
-	ClassDB::bind_method(D_METHOD("set_reach_offset", "new_value"), &RobotFill::set_reach_offset);
-	ClassDB::bind_method(D_METHOD("get_reach_offset"), &RobotFill::get_reach_offset);
-
-	ClassDB::bind_method(D_METHOD("set_x", "new_value"), &RobotFill::set_x);
-	ClassDB::bind_method(D_METHOD("get_x"), &RobotFill::get_x);
-
-	ClassDB::bind_method(D_METHOD("set_y", "new_value"), &RobotFill::set_y);
-	ClassDB::bind_method(D_METHOD("get_y"), &RobotFill::get_y);
-
-	ClassDB::bind_method(D_METHOD("set_room_gen", "path"), &RobotFill::set_room_gen);
-	ClassDB::bind_method(D_METHOD("get_room_gen"), &RobotFill::get_room_gen);
-
-	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "room_gen_path"), "set_room_gen", "get_room_gen");
-	ADD_PROPERTY(PropertyInfo(Variant::INT, "x"), "set_x", "get_x");
-	ADD_PROPERTY(PropertyInfo(Variant::INT, "y"), "set_y", "get_y");
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "reach_offset"), "set_reach_offset", "get_reach_offset");
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed"), "set_speed", "get_speed");
 }
 
 void RobotFill::_ready() {
-	if (room_gen_path.is_empty()) {
-		UtilityFunctions::print("Erro: room_gen_path esto vazio!");
-		return;
+	RobotBase::_ready();
+	if (sprite){
+		sprite->get_texture()->get_image()->fill(Color(0, 1, 0, 1));
+		sprite->set_modulate(Color(1, 1, 0, 1));
 	}
-	UtilityFunctions::print("get_null: Node em");
-	Node *node = get_node_or_null(room_gen_path);
-	if (!node) {
-		UtilityFunctions::print("Erro: Nenhum no encontrado em ", room_gen_path);
-		return;
-	}
-	UtilityFunctions::print("casntado: Node ");
-	room_gen = Object::cast_to<RoomGenerator>(node);
-
-	if (!room_gen) {
-		UtilityFunctions::print("Erro: Node em ", room_gen_path, " nao eh um RoomGenerator!");
-		return;
-	}
-
-	int offset = room_gen->get_room_size_x() * 8;
-
-	offset_vector = Vector2(8, 8) + Vector2(offset, -offset);
-
-	robot_rooms = room_gen->get_rooms().duplicate();
-
-	Array row_pos = robot_rooms[x];
-	Ref<Room> first_room = row_pos[y];
-	Vector2 start_pos = Vector2(first_room->get_glob_pos()) + offset_vector;
-
-	set_global_position(start_pos);
-	initialize_weight_array();
-	calculate_new_pos();
 }
 
 void RobotFill::_process(double p_delta) {
-	if (get_global_position().distance_to(target_pos) <= reach_offset)
-		calculate_new_pos();
-	Vector2 dir = get_global_position().direction_to(target_pos);
-	Vector2 dir_speeded = dir * Vector2(speed * p_delta, speed * p_delta);
-
-	set_global_position(get_global_position() + dir_speeded);
+	RobotBase::_process(p_delta);
 }
 
 RobotFill::RobotFill() {

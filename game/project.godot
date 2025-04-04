@@ -32,6 +32,10 @@ window/size/window_height_override=648
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
+[global_group]
+
+robot=""
+
 [gui]
 
 theme/custom="uid://8dlq75wlfqgb"

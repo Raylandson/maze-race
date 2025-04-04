@@ -1,4 +1,5 @@
 #include "robot_base.h"
+
 //#include <godot_cpp/classes/global_constants.hpp>
 
 void RobotBase::_bind_methods() {
@@ -28,7 +29,6 @@ RobotBase::RobotBase() {
 }
 
 void RobotBase::_ready() {
-	//initialize_weight_array();
 	if (room_gen_path.is_empty()) {
 		UtilityFunctions::print("Erro: room_gen_path esto vazio!");
 		return;
@@ -39,16 +39,10 @@ void RobotBase::_ready() {
 		return;
 	}
 	room_gen = Object::cast_to<RoomGenerator>(node);
+
 	if (!room_gen) {
 		UtilityFunctions::print("Erro: Node em ", room_gen_path, " nao eh um RoomGenerator!");
 		return;
-	}
-
-	if (!room_gen_path.is_empty()) {
-		room_gen = get_node<RoomGenerator>(room_gen_path); 
-		if (!room_gen) {
-			return;
-		}
 	}
 
 	int offset = room_gen->get_room_size_x() * 8;
@@ -62,9 +56,16 @@ void RobotBase::_ready() {
 	Vector2 start_pos = Vector2(first_room->get_glob_pos()) + offset_vector;
 
 	set_global_position(start_pos);
-
 	initialize_weight_array();
 	calculate_new_pos();
+
+	Ref<Image> img = Image::create(16, 16, false, Image::FORMAT_RGBA8);
+    img->fill(Color(1, 0.5, 0.5, 1));
+    Ref<ImageTexture> tex = ImageTexture::create_from_image(img);
+	sprite = memnew(Sprite2D);
+    sprite->set_texture(tex);
+    sprite->set_name("Sprite2D");
+    add_child(sprite);
 }
 
 void RobotBase::_process(double p_delta) {
@@ -77,95 +78,15 @@ void RobotBase::_process(double p_delta) {
 }
 
 void RobotBase::calculate_new_pos() {
-	if (!room_gen || x < 0 || y < 0 || x >= room_gen->get_room_quantity_x() || y >= room_gen->get_room_quantity_y())
-		return;
-
-	if (x == (room_gen->get_room_quantity_x() - 1) && y == (room_gen->get_room_quantity_y() - 1)) {
-		set_process(false);
-		return;
-	}
-
-	Array row = robot_rooms[x];
-	Ref<Room> current_room = row[y];
-
-	update_weights(row[y]);
-	Vector2i next_dir = min_weighted_dir(row[y]);
-	x = next_dir.x;
-	y = next_dir.y;
-
-	row = robot_rooms[next_dir.x];
-	Ref<Room> next_room = row[next_dir.y];
-
-	Vector2 pos = Vector2(next_room->get_glob_pos()) + offset_vector;
-	target_pos = pos;
 }
 
 void RobotBase::initialize_weight_array() {
-	if (!room_gen)
-		return;
-	weights.clear();
-	int width = room_gen->get_room_quantity_x();
-	int height = room_gen->get_room_quantity_y();
-
-	weights.resize(width);
-	for (int i = 0; i < width; i++) {
-		weights[i].resize(height, 0);
-	}
-	return;
 }
 
 void RobotBase::update_weights(Ref<Room> room) {
-	Vector2i pos = room->get_tile_pos();
-	int current_weight = weights[pos.x][pos.y];
-	UtilityFunctions::print("weight before in (", pos.x, ",", pos.y, "): ", current_weight);
 
-	Array dirs = room->get_directions();
-	int dir_size = dirs.size();
-
-	// Contar quantos vizinhos sao fins (INT_MAX)
-	int dead_end_count = 0;
-	for (int i = 0; i < dir_size; i++) {
-		Vector2i dir = dirs[i].operator Vector2i();
-		if (dir.x >= 0 && dir.x < weights.size() && dir.y >= 0 && dir.y < weights[0].size()) {
-			if (weights[dir.x][dir.y] == INT_MAX) {
-				dead_end_count++;
-			}
-		}
-	}
-
-	if (dir_size == 1) {
-		weights[pos.x][pos.y] = INT_MAX;
-	} else if (dir_size == 2) {
-		if (dead_end_count == 1) {
-			weights[pos.x][pos.y] = INT_MAX;
-		} else {
-			weights[pos.x][pos.y] = current_weight + 1;
-		}
-	} else if (dir_size >= 3) {
-		if (dead_end_count >= dir_size - 1) {
-			weights[pos.x][pos.y] = INT_MAX;
-		} else {
-			weights[pos.x][pos.y] = current_weight + 1;
-		}
-	}
-
-	UtilityFunctions::print("weight after in (", pos.x, ",", pos.y, "): ", weights[pos.x][pos.y]);
 }
 
 Vector2i RobotBase::min_weighted_dir(Ref<Room> room) {
-	int min_weight = INT_MAX;
-	Vector2i min_dir;
-
-	Array dirs = room->get_directions();
-
-	for (int i = 0; i < dirs.size(); i++) {
-		Vector2i dir = dirs[i].operator Vector2i();
-
-		int current_weight = weights[dir.x][dir.y];
-		if (current_weight < min_weight && current_weight < INT_MAX - 1) {
-			min_weight = current_weight;
-			min_dir = dir;
-		}
-	}
-	return min_dir;
+	return Vector2i(0, 0);
 }

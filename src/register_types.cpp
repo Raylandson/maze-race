@@ -10,6 +10,7 @@
 #include <robot_fill.h>
 #include <robot_tremaux.h>
 #include <robot_base.h>
+#include <robot_random.h>
 
 using namespace godot;
 
@@ -24,6 +25,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	GDREGISTER_RUNTIME_CLASS(RobotBase);
 	GDREGISTER_RUNTIME_CLASS(RobotFill);
 	GDREGISTER_RUNTIME_CLASS(RobotTremaux);
+	GDREGISTER_RUNTIME_CLASS(RobotRandom);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

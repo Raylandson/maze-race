@@ -3,7 +3,9 @@
 #include <room.h>
 #include <room_generator.h>
 #include <godot_cpp/classes/character_body2d.hpp>
-#include <godot_cpp/classes/packed_scene.hpp>
+#include <godot_cpp/classes/image.hpp>
+#include <godot_cpp/classes/image_texture.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
 
 using namespace godot;
 
@@ -20,9 +22,9 @@ protected:
 
 	//ready vars
 	RoomGenerator *room_gen = nullptr;
+	Sprite2D *sprite = nullptr;
 	Array robot_rooms;
 
-	Array rooms_weight;
 	std::vector<std::vector<int>> weights;
 
 	Vector2 target_pos;
