@@ -20,7 +20,7 @@ func create_final_area() -> void:
 	var last_room: Room = roms[room_gen.get_room_quantity_x() -1][room_gen.get_room_quantity_y() - 1]
 	
 	
-	$"../Final_area".global_position = last_room.get_glob_pos()
+	#$"../Final_area".global_position = last_room.get_glob_pos()
 
 
 
@@ -53,4 +53,5 @@ func create_cameras() -> void:
 
 
 func create_enemy(glob_pos: Vector2) -> void:
-	get_tree().current_scene.add_child(Enemy.new_enemy(glob_pos))
+	return
+	#get_tree().current_scene.add_child(Enemy.new_enemy(glob_pos))

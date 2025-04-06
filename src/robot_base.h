@@ -2,15 +2,15 @@
 
 #include <room.h>
 #include <room_generator.h>
-#include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/image.hpp>
 #include <godot_cpp/classes/image_texture.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
+#include <godot_cpp/classes/node2d.hpp>
 
 using namespace godot;
 
-class RobotBase : public CharacterBody2D {
-	GDCLASS(RobotBase, CharacterBody2D);
+class RobotBase : public Node2D {
+	GDCLASS(RobotBase, Node2D);
 
 	//export vars
 protected:

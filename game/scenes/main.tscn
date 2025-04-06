@@ -1,14 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://clusvcykg8ij7"]
+[gd_scene load_steps=23 format=3 uid="uid://clusvcykg8ij7"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dtio4dxj76h2r" path="res://scripts/menu.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://wips4ihld4t3" path="res://scripts/robot_line.gd" id="2_choun"]
 [ext_resource type="Script" uid="uid://wf226b3cm00o" path="res://scripts/room_manager.gd" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://rp6vsrce43wm" path="res://assets/Room_Builder_free_16x16.png" id="5_trceg"]
-[ext_resource type="Script" uid="uid://cl4smoh1fu0co" path="res://scripts/final_area.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b4uksjxpc2q6w" path="res://scenes/clicker_manager.tscn" id="8_tipki"]
-[ext_resource type="Script" uid="uid://cvehcaoewuwcs" path="res://scripts/descharge_area.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cx0l7tt44ltp0" path="res://scripts/race_camera.gd" id="12_eb6dy"]
-[ext_resource type="Script" uid="uid://dgsrcaamqlsfc" path="res://scripts/fps_count.gd" id="13_a8y0u"]
 [ext_resource type="Script" uid="uid://b1vedp6xit418" path="res://scripts/robot_generator.gd" id="13_trceg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_choun"]
@@ -324,8 +322,16 @@ offsets = PackedFloat32Array(0.867977, 1)
 colors = PackedColorArray(0.858824, 0.223529, 0.85098, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_a8y0u"]
-offsets = PackedFloat32Array(0.910112, 1)
-colors = PackedColorArray(0.054902, 0.619608, 0.486275, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.913979, 1)
+colors = PackedColorArray(0.0678597, 0.568464, 0.492829, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_tipki"]
+offsets = PackedFloat32Array(0.913979, 1)
+colors = PackedColorArray(0.635751, 0.192465, 0.039866, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_85g3d"]
+offsets = PackedFloat32Array(0.913979, 1)
+colors = PackedColorArray(0, 0.606883, 0.195609, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_eb6dy"]
 offsets = PackedFloat32Array(0, 0.711111)
@@ -485,20 +491,183 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
-size = Vector2(48, 48)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_choun"]
-size = Vector2(60, 48)
-
 [node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tipki")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.729
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.904
+offset_right = 119.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.585, 0.585)
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VerticalCon" type="VBoxContainer" parent="CanvasLayer/Menu/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HideButton" type="Button" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+custom_minimum_size = Vector2(28.375, 25)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Hide"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer"]
+layout_mode = 2
+text = "MAZE"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Size x"
+
+[node name="Xedit" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 9.0
+value = 9.0
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+text = "Size y"
+
+[node name="Yedit" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 5.0
+value = 5.0
+alignment = 1
+
+[node name="MarginContainer7" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer7"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer7/HBoxContainer"]
+layout_mode = 2
+text = "%Remove"
+
+[node name="RemoveWall" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer7/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer4"]
+layout_mode = 2
+text = "ROBOTS"
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer5/HBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedEdit" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer5/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 5000.0
+value = 600.0
+alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer6"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer6/HBoxContainer"]
+layout_mode = 2
+text = "Offset"
+
+[node name="OffsetEdit" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer6/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 16.0
+value = 5.0
+alignment = 1
 
 [node name="RoomGenerator" type="RoomGenerator" parent="."]
 tile_map = NodePath("../TileMapLayer2")
 room_size_x = 4
 room_size_y = 4
-room_quantity_x = 45
-room_quantity_y = 25
+room_quantity_x = 36
+room_quantity_y = 20
+percent_remove_existent = 0.08
 remove_entire_wall = true
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
@@ -537,37 +706,75 @@ antialiased = true
 script = ExtResource("2_choun")
 robot = NodePath("../RobotRandom")
 
+[node name="RobotDFSLine" type="Line2D" parent="." node_paths=PackedStringArray("robot")]
+width = 6.0
+gradient = SubResource("Gradient_tipki")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_choun")
+robot = NodePath("../RobotDFS")
+
+[node name="RobotWallLine" type="Line2D" parent="." node_paths=PackedStringArray("robot")]
+width = 6.0
+gradient = SubResource("Gradient_85g3d")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_choun")
+robot = NodePath("../RobotWall")
+
 [node name="RaceCamera" type="Camera2D" parent="." node_paths=PackedStringArray("room_gen")]
 script = ExtResource("12_eb6dy")
 room_gen = NodePath("../RoomGenerator")
 
+[node name="RobotWall" type="RobotWall" parent="." groups=["robot"]]
+room_gen_path = NodePath("../RoomGenerator")
+
+[node name="PointLight2D2" type="PointLight2D" parent="RobotWall"]
+color = Color(0, 1, 0, 1)
+energy = 2.35
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_trceg")
+
 [node name="RobotFill" type="RobotFill" parent="." groups=["robot"]]
 room_gen_path = NodePath("../RoomGenerator")
-reach_offset = 10.0
-speed = 1000.0
+speed = 0.0
 
 [node name="PointLight2D" type="PointLight2D" parent="RobotFill"]
-color = Color(0.839215, 0.785152, 0, 1)
+color = Color(0.916139, 0.802154, 0, 1)
+energy = 2.35
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_trceg")
 
 [node name="RobotTremaux" type="RobotTremaux" parent="." groups=["robot"]]
 room_gen_path = NodePath("../RoomGenerator")
-reach_offset = 10.0
-speed = 1000.0
+speed = 0.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="RobotTremaux"]
-color = Color(0.601004, 0.0431054, 0.702979, 1)
+color = Color(0.928168, 1.36691e-05, 0.613909, 1)
+energy = 1.25
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_trceg")
 
 [node name="RobotRandom" type="RobotRandom" parent="." groups=["robot"]]
 room_gen_path = NodePath("../RoomGenerator")
-reach_offset = 10.0
-speed = 2000.0
+speed = 0.0
 
 [node name="PointLight2D3" type="PointLight2D" parent="RobotRandom"]
-color = Color(5.29438e-07, 0.64072, 0.535358, 1)
+color = Color(1.41986e-06, 0.430646, 0.357098, 1)
+energy = 4.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_a8y0u")
+
+[node name="RobotDFS" type="RobotDFS" parent="." groups=["robot"]]
+room_gen_path = NodePath("../RoomGenerator")
+
+[node name="PointLight2D4" type="PointLight2D" parent="RobotDFS"]
+color = Color(0.539088, 0.130509, 0.0277602, 1)
+energy = 4.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_a8y0u")
 
@@ -579,22 +786,7 @@ script = ExtResource("4_tbgi4")
 room_gen = NodePath("../RoomGenerator")
 create_camera = false
 
-[node name="Final_area" type="Area2D" parent="."]
-position = Vector2(-296, -224)
-script = ExtResource("7_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Final_area"]
-position = Vector2(48, -40)
-shape = SubResource("RectangleShape2D_tipki")
-
 [node name="ClickerManager" parent="." instance=ExtResource("8_tipki")]
-
-[node name="DeschargeArea" type="Area2D" parent="."]
-position = Vector2(31, -27)
-script = ExtResource("9_85g3d")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeschargeArea"]
-shape = SubResource("RectangleShape2D_choun")
 
 [node name="RobotGenerator" type="Node2D" parent="."]
 script = ExtResource("13_trceg")
@@ -602,58 +794,13 @@ bot_quantity = 1000
 time_to_spawn = 0.02
 robot_speed = 1000.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="FpsCount" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-script = ExtResource("13_a8y0u")
-
-[node name="Label" type="Label" parent="CanvasLayer/FpsCount"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "FPS:  "
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Robos: "
-
-[node name="Control2" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -85.0
-offset_top = 1.0
-offset_right = -42.305
-offset_bottom = 25.19
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="CanvasLayer/Control2"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 23.0
-text = "Gdscript"
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.15
 blend_mode = 1
 
-[connection signal="body_entered" from="Final_area" to="Final_area" method="_on_body_entered"]
-[connection signal="body_entered" from="DeschargeArea" to="DeschargeArea" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/HideButton" to="CanvasLayer/Menu" method="_on_hide_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer2/HBoxContainer/Xedit" to="CanvasLayer/Menu" method="_on_xedit_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer3/HBoxContainer/Yedit" to="CanvasLayer/Menu" method="_on_yedit_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer7/HBoxContainer/RemoveWall" to="CanvasLayer/Menu" method="_on_remove_wall_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer5/HBoxContainer/SpeedEdit" to="CanvasLayer/Menu" method="_on_speed_edit_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer6/HBoxContainer/OffsetEdit" to="CanvasLayer/Menu" method="_on_offset_edit_value_changed"]

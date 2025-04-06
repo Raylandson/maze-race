@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://sfql3ilcbw4f"]
+[gd_scene load_steps=8 format=3 uid="uid://sfql3ilcbw4f"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dume2yodhskl4" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c7cpsmlfjs4ik" path="res://assets/player1.png" id="2_dqkch"]
-[ext_resource type="PackedScene" uid="uid://dbkfftain6jje" path="res://scenes/weapon.tscn" id="3_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wfyh"]
 radius = 7.5
@@ -37,8 +36,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_dqkch")
 }
 autoplay = "walking"
-
-[node name="Weapon" parent="." instance=ExtResource("3_dqkch")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

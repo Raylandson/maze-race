@@ -7,8 +7,8 @@ void RobotFill::_bind_methods() {
 void RobotFill::_ready() {
 	RobotBase::_ready();
 	if (sprite){
-		sprite->get_texture()->get_image()->fill(Color(0, 1, 0, 1));
-		sprite->set_modulate(Color(1, 1, 0, 1));
+		//sprite->set_modulate(Color(1, 1, 0, 1));
+		sprite->set_modulate(Color(0.7, 0.85, 1.0, 1)); // azul claro
 	}
 }
 
@@ -24,6 +24,7 @@ void RobotFill::calculate_new_pos() {
 		return;
 
 	if (x == (room_gen->get_room_quantity_x() - 1) && y == (room_gen->get_room_quantity_y() - 1)) {
+		speed = 0.0;
 		set_process(false);
 		return;
 	}

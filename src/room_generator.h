@@ -22,6 +22,7 @@ private:
 	int room_quantity_x = 15;
 	int room_quantity_y = 15;
 	bool remove_entire_wall = false;
+	float percent_remove_existent = 0.0;
 	Array rooms;
 
 protected:
@@ -49,8 +50,12 @@ public:
 
 	void set_room_quantity_x(int p_quantity) { room_quantity_x = p_quantity; }
 	int get_room_quantity_x() const { return room_quantity_x; }
+	
 	void set_room_quantity_y(int p_quantity) { room_quantity_y = p_quantity; }
 	int get_room_quantity_y() const { return room_quantity_y; }
+	
+	void set_percent_remove_existent(float n_value) { percent_remove_existent = n_value; }
+	float get_percent_remove_existent() const { return percent_remove_existent; }
 
 	void set_remove_entire_wall(bool new_value) { remove_entire_wall = new_value; }
 	bool get_remove_entire_wall() const { return remove_entire_wall; }

@@ -9,7 +9,7 @@ RobotRandom::RobotRandom() {
 void RobotRandom::_ready() {
 	RobotBase::_ready();
 	if (sprite) {
-		sprite->set_modulate(Color(0.5, 1.0, 0.5, 1.0));
+		sprite->set_modulate(Color(0.9, 0.8, 1.0, 1)); // lavanda
 	}
 }
 
@@ -22,6 +22,7 @@ void RobotRandom::calculate_new_pos() {
 		return;
 
 	if (x == (room_gen->get_room_quantity_x() - 1) && y == (room_gen->get_room_quantity_y() - 1)) {
+		speed = 0.0;
 		set_process(false);
 		return;
 	}

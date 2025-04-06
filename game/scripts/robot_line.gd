@@ -22,3 +22,6 @@ func _process(delta: float) -> void:
 		if(robot.get_speed() <= 0):
 			robot.set_speed(default_speed)
 		add_point(robot.global_position)
+		if points.size() > 5000:
+			remove_point(0)
+		#print('point added', points.size())
