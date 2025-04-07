@@ -56,5 +56,7 @@ public:
 	void set_room_gen(const NodePath &room_path) { room_gen_path = room_path; }
 	NodePath get_room_gen() const { return room_gen_path; }
 
+	void found_signal();
+
 	RobotBase();
 };

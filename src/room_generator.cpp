@@ -12,6 +12,13 @@ void RoomGenerator::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_room_size_x"), &RoomGenerator::get_room_size_x);
 	ClassDB::bind_method(D_METHOD("set_room_size_y", "size"), &RoomGenerator::set_room_size_y);
 	ClassDB::bind_method(D_METHOD("get_room_size_y"), &RoomGenerator::get_room_size_y);
+	
+	ClassDB::bind_method(D_METHOD("set_target_x", "value"), &RoomGenerator::set_target_x);
+	ClassDB::bind_method(D_METHOD("get_target_x"), &RoomGenerator::get_target_x);
+	
+	ClassDB::bind_method(D_METHOD("set_target_y", "value"), &RoomGenerator::set_target_y);
+	ClassDB::bind_method(D_METHOD("get_target_y"), &RoomGenerator::get_target_y);
+	
 	ClassDB::bind_method(D_METHOD("set_room_quantity_x", "quantity"), &RoomGenerator::set_room_quantity_x);
 	ClassDB::bind_method(D_METHOD("get_room_quantity_x"), &RoomGenerator::get_room_quantity_x);
 	ClassDB::bind_method(D_METHOD("set_room_quantity_y", "quantity"), &RoomGenerator::set_room_quantity_y);
@@ -28,6 +35,10 @@ void RoomGenerator::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "tile_map"), "set_tile_map", "get_tile_map");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "room_size_x"), "set_room_size_x", "get_room_size_x");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "room_size_y"), "set_room_size_y", "get_room_size_y");
+	
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "target_x"), "set_target_x", "get_target_x");
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "target_y"), "set_target_y", "get_target_y");
+	
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "room_quantity_x"), "set_room_quantity_x", "get_room_quantity_x");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "room_quantity_y"), "set_room_quantity_y", "get_room_quantity_y");
 	

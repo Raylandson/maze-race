@@ -23,7 +23,8 @@ void RobotFill::calculate_new_pos() {
 	if (!room_gen || x < 0 || y < 0 || x >= room_gen->get_room_quantity_x() || y >= room_gen->get_room_quantity_y())
 		return;
 
-	if (x == (room_gen->get_room_quantity_x() - 1) && y == (room_gen->get_room_quantity_y() - 1)) {
+	if (x == (room_gen->get_target_x() - 1) && y == (room_gen->get_target_y() - 1)) {
+		emit_signal("found_signal", this);
 		speed = 0.0;
 		set_process(false);
 		return;
@@ -57,14 +58,9 @@ void RobotFill::initialize_weight_array() {
 	for (int i = 0; i < width; i++) {
 		weights[i].resize(height, 0);
 		for (int j = 0; j < height; j++) {
-			int weight = abs(i - room_gen->get_room_quantity_x() + 1) + abs(j - room_gen->get_room_quantity_y() + 1);
+			int weight = abs(i - room_gen->get_target_x() + 1) + abs(j - room_gen->get_target_y() + 1);
 			weights[i][j] = weight;
 		}
-	}
-	return;
-	weights.resize(width);
-	for (int i = 0; i < width; i++) {
-		weights[i].resize(height, 0);
 	}
 }
 
@@ -87,8 +83,8 @@ void RobotFill::update_weights(Ref<Room> room) {
 		int new_weight = min_weight_neighbor + 1;
 
 		//when find the destination
-		int x_destin = room_gen->get_room_quantity_x() - 1;
-		int y_destin = room_gen->get_room_quantity_y() - 1;
+		int x_destin = room_gen->get_target_x() - 1;
+		int y_destin = room_gen->get_target_y() - 1;
 		if (x_destin == x && y_destin == y)
 			new_weight = 0;
 

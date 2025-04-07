@@ -1,4 +1,5 @@
 #include "robot_base.h"
+#include <godot_cpp/variant/utility_functions.hpp>
 
 //#include <godot_cpp/classes/global_constants.hpp>
 
@@ -17,6 +18,9 @@ void RobotBase::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_room_gen", "path"), &RobotBase::set_room_gen);
 	ClassDB::bind_method(D_METHOD("get_room_gen"), &RobotBase::get_room_gen);
+
+	ClassDB::add_signal("RobotBase", MethodInfo("found_signal", PropertyInfo(Variant::OBJECT, 
+		"sender", PROPERTY_HINT_RESOURCE_TYPE, "RobotBase")));
 
 	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "room_gen_path"), "set_room_gen", "get_room_gen");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "x"), "set_x", "get_x");

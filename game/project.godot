@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="graph-dungeon"
+config/name="Maze Race"
 run/main_scene="uid://clusvcykg8ij7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bu7hj5uqnl37u"
 
 [autoload]
 

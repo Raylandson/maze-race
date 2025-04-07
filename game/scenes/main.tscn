@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://clusvcykg8ij7"]
+[gd_scene load_steps=29 format=4 uid="uid://clusvcykg8ij7"]
 
 [ext_resource type="Texture2D" uid="uid://dvpbaxv46n2vu" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://dtio4dxj76h2r" path="res://scripts/menu.gd" id="1_tipki"]
+[ext_resource type="PackedScene" uid="uid://bp2wyu05atuli" path="res://scenes/result_container.tscn" id="2_85g3d"]
 [ext_resource type="Script" uid="uid://wips4ihld4t3" path="res://scripts/robot_line.gd" id="2_choun"]
 [ext_resource type="Script" uid="uid://wf226b3cm00o" path="res://scripts/room_manager.gd" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://rp6vsrce43wm" path="res://assets/Room_Builder_free_16x16.png" id="5_trceg"]
@@ -500,6 +501,21 @@ gradient = SubResource("Gradient_jkv2x")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_dp3eg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_muem4"]
 resource_name = "light_anim"
 length = 0.5
@@ -515,21 +531,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.3, 4.0]
-}
-
-[sub_resource type="Animation" id="Animation_dp3eg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ld40"]
@@ -552,20 +553,21 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tipki")
+result_container_scene = ExtResource("2_85g3d")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.708
-anchor_right = 1.0
+anchor_left = 0.736
+anchor_right = 1.002
 anchor_bottom = 1.0
-offset_left = 0.191986
+offset_left = 0.0639343
 offset_top = -1.0
-offset_right = 124.0
-offset_bottom = 153.0
+offset_right = 138.848
+offset_bottom = 284.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.585, 0.585)
+scale = Vector2(0.525, 0.525)
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 50
@@ -631,6 +633,48 @@ text = "Size y"
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 5.0
+value = 5.0
+alignment = 1
+
+[node name="MarginContainer11" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer11"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer11/HBoxContainer"]
+layout_mode = 2
+text = "Target x"
+
+[node name="TargetX" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer11/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 9.0
+alignment = 1
+
+[node name="MarginContainer12" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer12"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer12/HBoxContainer"]
+layout_mode = 2
+text = "Target y"
+
+[node name="TargetY" type="SpinBox" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer12/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
 value = 5.0
 alignment = 1
 
@@ -740,10 +784,41 @@ custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 text = "Toggle Light"
 
+[node name="MarginContainer10" type="MarginContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer10"]
+layout_mode = 2
+
+[node name="StartRace" type="Button" parent="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer10/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "Start Race"
+
+[node name="ResultContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.292
+anchor_bottom = 0.985
+offset_right = -0.192017
+offset_bottom = -0.140015
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="BoxResults" type="VBoxContainer" parent="CanvasLayer/Menu/ResultContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="RoomGenerator" type="RoomGenerator" parent="."]
 tile_map = NodePath("../TileMapLayer2")
 room_size_x = 4
 room_size_y = 4
+target_x = 10
+target_y = 5
 room_quantity_x = 36
 room_quantity_y = 20
 percent_remove_existent = 0.08
@@ -894,8 +969,11 @@ autoplay = "light_anim"
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/HideButton" to="CanvasLayer/Menu" method="_on_hide_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer2/HBoxContainer/Xedit" to="CanvasLayer/Menu" method="_on_xedit_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer3/HBoxContainer/Yedit" to="CanvasLayer/Menu" method="_on_yedit_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer11/HBoxContainer/TargetX" to="CanvasLayer/Menu" method="_on_target_x_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer12/HBoxContainer/TargetY" to="CanvasLayer/Menu" method="_on_target_y_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer7/HBoxContainer/RemoveWall" to="CanvasLayer/Menu" method="_on_remove_wall_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer5/HBoxContainer/SpeedEdit" to="CanvasLayer/Menu" method="_on_speed_edit_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer6/HBoxContainer/OffsetEdit" to="CanvasLayer/Menu" method="_on_offset_edit_value_changed"]
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer8/HBoxContainer/LineButton" to="CanvasLayer/Menu" method="_on_line_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer9/HBoxContainer/LightButton" to="CanvasLayer/Menu" method="_on_light_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VerticalCon/MarginContainer10/HBoxContainer/StartRace" to="CanvasLayer/Menu" method="_on_start_race_pressed"]

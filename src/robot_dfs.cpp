@@ -25,7 +25,8 @@ void RobotDFS::calculate_new_pos() {
         return;
     }
 
-    if (x == room_gen->get_room_quantity_x() - 1 && y == room_gen->get_room_quantity_y() - 1) {
+    if (x == room_gen->get_target_x() - 1 && y == room_gen->get_target_y() - 1) {
+        emit_signal("found_signal", this);
         speed = 0;
         set_process(false);
         target_reached = true;
@@ -69,8 +70,8 @@ void RobotDFS::calculate_next_step() {
 
     Vector2i current_pos = path_stack.top();
     
-    if (current_pos.x == room_gen->get_room_quantity_x() - 1 && 
-        current_pos.y == room_gen->get_room_quantity_y() - 1) {
+    if (current_pos.x == room_gen->get_target_x() - 1 && 
+        current_pos.y == room_gen->get_target_y() - 1) {
         target_reached = true;
         set_process(false);
         speed = 0;

@@ -21,6 +21,8 @@ private:
 	int room_size_y = 7;
 	int room_quantity_x = 15;
 	int room_quantity_y = 15;
+	int target_x = 0;
+	int target_y = 0;
 	bool remove_entire_wall = false;
 	float percent_remove_existent = 0.0;
 	Array rooms;
@@ -47,6 +49,12 @@ public:
 
 	void set_room_size_y(int p_size) { room_size_y = p_size; }
 	int get_room_size_y() const { return room_size_y; }
+	
+	void set_target_x(int n_value) { target_x = n_value; }
+	int get_target_x() const { return target_x; }
+	
+	void set_target_y(int n_value) { target_y = n_value; }
+	int get_target_y() const { return target_y; }
 
 	void set_room_quantity_x(int p_quantity) { room_quantity_x = p_quantity; }
 	int get_room_quantity_x() const { return room_quantity_x; }

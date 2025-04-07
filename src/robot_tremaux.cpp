@@ -21,7 +21,8 @@ void RobotTremaux::calculate_new_pos() {
 	if (!room_gen || x < 0 || y < 0 || x >= room_gen->get_room_quantity_x() || y >= room_gen->get_room_quantity_y())
 		return;
 
-	if (x == (room_gen->get_room_quantity_x() - 1) && y == (room_gen->get_room_quantity_y() - 1)) {
+	if (x == (room_gen->get_target_x() - 1) && y == (room_gen->get_target_y() - 1)) {
+		emit_signal("found_signal", this);
 		speed = 0.0;
 		set_process(false);
 		return;
