@@ -49,7 +49,7 @@ O objetivo? Explorar como diferentes algoritmos resolvem labirintos, comparando 
 3. **Execute o Jogo**:
    - **Windows**:
      - Clique duas vezes no executável (ex.: `maze_race.exe`).
-   - **Linux**:
-     - Opção 1: Abra o terminal na pasta e rode:
-       ```bash
-       ./maze_race
+   - **Linux**::
+     - Clique com o botão direito no arquivo executável, selecione **Propriedades > Permissões**.
+     - Marque a opção **"Permitir executar o arquivo como programa"**.
+     - Feche as propriedades e dê duplo clique no executável para rodar.
