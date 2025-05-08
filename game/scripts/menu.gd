@@ -8,7 +8,8 @@ $"../../RobotDFSLine", $"../../RobotWallLine"]
 	$"../../RobotFill/PointLight2D",
 	$"../../RobotTremaux/PointLight2D2",
 	$"../../RobotRandom/PointLight2D3",
-	$"../../RobotDFS/PointLight2D4"
+	$"../../RobotDFS/PointLight2D4",
+	$"../../FinalLight"
 ]
 
 @export var result_container_scene: PackedScene
@@ -43,12 +44,6 @@ func _ready() -> void:
 		%OffsetEdit.value = reach_offset
 		GameEvents.reach_offset = reach_offset
 		robot.set_reach_offset(GameEvents.reach_offset)
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("reset"):
-		get_tree().reload_current_scene()
-
 
 
 func _on_hide_button_pressed() -> void:
@@ -143,3 +138,7 @@ func _on_target_x_value_changed(value: float) -> void:
 
 func _on_target_y_value_changed(value: float) -> void:
 	GameEvents.room_target_y = int(value)
+
+
+func _on_restart_regen_maze_pressed() -> void:
+	get_tree().reload_current_scene()

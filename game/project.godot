@@ -27,8 +27,8 @@ settings/stdout/print_fps=true
 
 window/size/viewport_width=576
 window/size/viewport_height=324
-window/size/window_width_override=1152
-window/size/window_height_override=648
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
@@ -106,7 +106,5 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

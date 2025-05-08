@@ -73,8 +73,13 @@ void RobotBase::_ready() {
 }
 
 void RobotBase::_process(double p_delta) {
-	if (get_global_position().distance_to(target_pos) <= reach_offset)
+	if (get_global_position().distance_to(target_pos) <= reach_offset
+	|| get_global_position().distance_to(target_pos) <= speed * p_delta){
+		set_global_position(target_pos);
 		calculate_new_pos();
+	}
+	
+	
 	Vector2 dir = get_global_position().direction_to(target_pos);
 	Vector2 dir_speeded = dir * Vector2(speed * p_delta, speed * p_delta);
 

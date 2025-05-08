@@ -21,6 +21,7 @@ func create_final_area() -> void:
 	var offset: int = room_gen.get_room_size_x() * 8;
 	var offset_vector: Vector2 = Vector2(8, 8) + Vector2(offset, -offset);
 	$"../FinalLight".global_position = Vector2(last_room.get_glob_pos()) + offset_vector
+	$"../FinalSprite".global_position = Vector2(last_room.get_glob_pos()) + offset_vector
 	#$"../Final_area".global_position = last_room.get_glob_pos()
 
 
