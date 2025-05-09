@@ -1,6 +1,6 @@
 # Corrida de Robôs em Labirintos - AED2 🏆
 
-Bem-vindo ao nosso projeto da disciplina **Algoritmos e Estruturas de Dados 2**! Desenvolvido em equipe por estudantes da faculdade, este é um jogo de **corrida de robôs em labirintos** criado com **Godot Engine** e **C++ (GDExtension)**. Implementamos cinco algoritmos de navegação para robôs — **Modified Flood Fill**, **Trémaux**, **Random**, **DFS** e **WallFollowing** — e os colocamos pra competir em labirintos gerados dinamicamente. Foi uma resenha braba! 😎
+Bem-vindo ao nosso projeto da disciplina **Algoritmos e Estruturas de Dados 2**! Desenvolvido em equipe por estudantes da faculdade, este é um jogo de **corrida de robôs em labirintos** criado com **Godot Engine** e **C++ (GDExtension)**. Implementamos cinco algoritmos de navegação para robôs — **Modified Flood Fill**, **Trémaux**, **Random**, **DFS** e **WallFollowing** — e os colocamos pra competir em labirintos gerados dinamicamente. 😎
 
 O objetivo? Explorar como diferentes algoritmos resolvem labirintos, comparando eficiência e comportamento, tudo com uma pitada de diversão e trabalho em equipe.
 
